@@ -6,7 +6,16 @@ Flutter desktop/mobile demo.
 
 ## Status
 
-Project scaffolding is in place. Palette UI, contrast helpers, and pubspec will land in follow-up commits.
+Contrast helpers (`lib/contrast.dart`) are in place. Palette UI and pubspec will land in follow-up commits.
+
+## Module
+
+```dart
+import 'contrast.dart';
+
+final ratio = contrastRatio(Colors.black, Colors.white);
+final hex = hexOf(Colors.teal);
+```
 
 ## Planned setup
 
