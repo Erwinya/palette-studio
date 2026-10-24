@@ -6,7 +6,7 @@ Flutter desktop/mobile demo.
 
 ## Status
 
-Contrast helpers, pubspec, and app shell (`main` / `app`) are in place. Studio screen UI will land in a follow-up commit.
+Contrast helpers, app shell, and studio screen UI are in place. Tests and lint config will land in follow-up commits.
 
 ## Setup
 

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:palette_studio/screens/studio_screen.dart';
 
 class PaletteStudioApp extends StatelessWidget {
   const PaletteStudioApp({super.key});
@@ -12,13 +13,7 @@ class PaletteStudioApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: const Color(0xFF245B4A)),
         useMaterial3: true,
       ),
-      // StudioScreen lands in a follow-up commit.
-      home: Scaffold(
-        appBar: AppBar(title: const Text('Palette Studio')),
-        body: const Center(
-          child: Text('Palette UI lands in a follow-up commit.'),
-        ),
-      ),
+      home: const StudioScreen(),
     );
   }
 }
