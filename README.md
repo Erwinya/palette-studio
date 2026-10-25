@@ -21,6 +21,9 @@ flutter run
 flutter test
 ```
 
+
+Contrast checks use WCAG-ish thresholds: `4.5:1` for AA body text and `3.0:1` for AA large text.
+
 ## Module
 
 ```dart
