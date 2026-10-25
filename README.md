@@ -6,13 +6,19 @@ Flutter desktop/mobile demo.
 
 ## Status
 
-Contrast helpers, app shell, and studio screen UI are in place. Tests and lint config will land in follow-up commits.
+Studio UI, contrast helpers, lint config, and unit tests are in place. Final polish lands next.
 
 ## Setup
 
 ```powershell
 flutter pub get
 flutter run
+```
+
+## Test
+
+```powershell
+flutter test
 ```
 
 ## Module
