@@ -6,7 +6,9 @@ Flutter desktop/mobile demo.
 
 ## Status
 
-Studio UI, contrast helpers, lint config, and unit tests are in place. Final polish lands next.
+Complete: contrast helpers, accessible studio UI, lint config, and unit tests.
+
+Contrast checks use WCAG-ish thresholds: `4.5:1` for AA body text and `3.0:1` for AA large text.
 
 ## Setup
 
@@ -20,9 +22,6 @@ flutter run
 ```powershell
 flutter test
 ```
-
-
-Contrast checks use WCAG-ish thresholds: `4.5:1` for AA body text and `3.0:1` for AA large text.
 
 ## Module
 

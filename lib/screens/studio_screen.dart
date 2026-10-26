@@ -41,7 +41,10 @@ class _StudioScreenState extends State<StudioScreen> {
       appBar: AppBar(
         title: const Text('Palette Studio'),
         actions: [
-          TextButton(onPressed: _export, child: const Text('Export')),
+          TextButton(
+            onPressed: _export,
+            child: const Text('Export HEX'),
+          ),
         ],
       ),
       body: ListView(
@@ -52,19 +55,24 @@ class _StudioScreenState extends State<StudioScreen> {
             runSpacing: 10,
             children: [
               for (var i = 0; i < _palette.length; i++)
-                GestureDetector(
-                  onTap: () => setState(() => _selected = i),
-                  child: Container(
-                    width: 64,
-                    height: 64,
-                    decoration: BoxDecoration(
-                      color: _palette[i],
-                      borderRadius: BorderRadius.circular(12),
-                      border: Border.all(
-                        color: i == _selected
-                            ? Theme.of(context).colorScheme.primary
-                            : Colors.black12,
-                        width: i == _selected ? 3 : 1,
+                Semantics(
+                  button: true,
+                  selected: i == _selected,
+                  label: 'Palette color ${i + 1} ${hexOf(_palette[i])}',
+                  child: GestureDetector(
+                    onTap: () => setState(() => _selected = i),
+                    child: Container(
+                      width: 64,
+                      height: 64,
+                      decoration: BoxDecoration(
+                        color: _palette[i],
+                        borderRadius: BorderRadius.circular(12),
+                        border: Border.all(
+                          color: i == _selected
+                              ? Theme.of(context).colorScheme.primary
+                              : Colors.black12,
+                          width: i == _selected ? 3 : 1,
+                        ),
                       ),
                     ),
                   ),
@@ -73,15 +81,18 @@ class _StudioScreenState extends State<StudioScreen> {
           ),
           const SizedBox(height: 20),
           Text('Selected: ${hexOf(_fg)}'),
-          Slider(
-            value: HSVColor.fromColor(_fg).hue,
-            max: 359,
-            label: 'Hue',
-            onChanged: (v) {
-              setState(() {
-                _palette[_selected] = HSVColor.fromColor(_fg).withHue(v).toColor();
-              });
-            },
+          Semantics(
+            label: 'Hue slider',
+            child: Slider(
+              value: HSVColor.fromColor(_fg).hue,
+              max: 359,
+              label: 'Hue',
+              onChanged: (v) {
+                setState(() {
+                  _palette[_selected] = HSVColor.fromColor(_fg).withHue(v).toColor();
+                });
+              },
+            ),
           ),
           Card(
             child: Padding(
@@ -103,9 +114,17 @@ class _StudioScreenState extends State<StudioScreen> {
                     ),
                   ),
                   const SizedBox(height: 12),
-                  Text('Contrast ratio: ${ratio.toStringAsFixed(2)} : 1'),
-                  Text(ratio >= 4.5 ? 'AA body text: PASS' : 'AA body text: FAIL'),
-                  Text(ratio >= 3.0 ? 'AA large text: PASS' : 'AA large text: FAIL'),
+                  Semantics(
+                    liveRegion: true,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text('Contrast ratio: ${ratio.toStringAsFixed(2)} : 1'),
+                        Text(ratio >= 4.5 ? 'AA body text: PASS' : 'AA body text: FAIL'),
+                        Text(ratio >= 3.0 ? 'AA large text: PASS' : 'AA large text: FAIL'),
+                      ],
+                    ),
+                  ),
                 ],
               ),
             ),
@@ -113,6 +132,7 @@ class _StudioScreenState extends State<StudioScreen> {
         ],
       ),
       floatingActionButton: FloatingActionButton(
+        tooltip: 'Add random color',
         onPressed: () {
           setState(() {
             _palette.add(Color(0xFF000000 | _random.nextInt(0xFFFFFF)));
