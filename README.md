@@ -6,7 +6,7 @@ Flutter desktop/mobile demo.
 
 ## Status
 
-Complete: contrast helpers, accessible studio UI, lint config, and unit tests.
+Complete: contrast helpers, accessible studio UI, lint config, unit tests, and CI. CI workflow included.
 
 Contrast checks use WCAG-ish thresholds: `4.5:1` for AA body text and `3.0:1` for AA large text.
 
