@@ -3,14 +3,13 @@ import 'dart:math' as math;
 import 'package:flutter/material.dart';
 
 double relativeLuminance(Color color) {
-  double channel(int c) {
-    final v = c / 255.0;
-    return v <= 0.03928 ? v / 12.92 : math.pow((v + 0.055) / 1.055, 2.4).toDouble();
+  double channel(double c) {
+    return c <= 0.03928 ? c / 12.92 : math.pow((c + 0.055) / 1.055, 2.4).toDouble();
   }
 
-  final r = channel(color.red);
-  final g = channel(color.green);
-  final b = channel(color.blue);
+  final r = channel(color.r);
+  final g = channel(color.g);
+  final b = channel(color.b);
   return 0.2126 * r + 0.7152 * g + 0.0722 * b;
 }
 
@@ -23,6 +22,6 @@ double contrastRatio(Color a, Color b) {
 }
 
 String hexOf(Color color) {
-  final hex = color.value.toRadixString(16).padLeft(8, '0').substring(2);
+  final hex = color.toARGB32().toRadixString(16).padLeft(8, '0').substring(2);
   return '#${hex.toUpperCase()}';
 }
